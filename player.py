@@ -15,6 +15,10 @@ class Player:
     def get_community_card(self, game_state):
         return game_state["community_cards"]
 
+    def get_active_players(self, game_state):
+        active_players = [1 for elem in game_state['players'] if elem['status'] == 'active']
+        return sum(active_players)
+
     def betRequest(self, game_state):
         print("#######################################")
         print("#######################################")
