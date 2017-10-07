@@ -1,3 +1,4 @@
+from utils import getHandPower
 
 class Player:
     VERSION = "Default Python folding player"
@@ -13,7 +14,11 @@ class Player:
         print(game_state)
         hand = self.get_hand(game_state)
         community_cards = self.get_community_card(game_state)
-        bet = 9999
+        hand_power = getHandPower(hand)
+        if hand_power >= 20:
+            bet = 9999
+        else:
+            bet = 0
         print("#######################################")
         print("                 OUR HAND                       ")
         print(hand)
@@ -21,6 +26,10 @@ class Player:
         print("#######################################")
         print("                 COMMUNITY CARDS                ")
         print(community_cards)
+        print("#######################################")
+        print("#######################################")
+        print("                 HAND POWER                      ")
+        print(hand_power)
         print("#######################################")
         print("#######################################")
         print("                 OUR BET               ")
