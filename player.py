@@ -3,8 +3,8 @@ class Player:
     VERSION = "Default Python folding player"
 
     def betRequest(self, game_state):
-        print(game_state)
-        return 0  
+        print("Community cards: {}".format(game_state["community_cards"]))
+        return 9999
 
     def showdown(self, game_state):
         pass
