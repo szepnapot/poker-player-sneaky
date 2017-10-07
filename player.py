@@ -1,7 +1,5 @@
 import pprint
 from utils import getHandPower
-
-import json
 import requests
 
 class Player:
