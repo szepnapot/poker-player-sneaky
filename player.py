@@ -30,12 +30,15 @@ class Player:
         hand = self.get_hand(game_state)
         community_cards = self.get_community_card(game_state)
         hand_power = getHandPower(hand)
-        if hand_power >= 25:
+
+        if hand_power >= 23:
             bet = 9999
-        elif hand_power>= 20:
-            bet = 105
+        elif hand_power >= 21:
+            bet = 300
+        elif hand_power >= 19:
+            bet = 200
         elif hand_power > 10:
-            bet = 30
+            bet = 0
         else:
             bet = 0
         print("#######################################")
@@ -55,7 +58,16 @@ class Player:
         print(bet)
         return bet
 
+    def get_winner_stats(self, game_state):
+        winner = [elem for elem in game_state['players'] if elem['status'] == 'active'][0]
+        winner_hand = winner['hole_cards']
+        winner_hand_power = getHandPower(winner_hand)
+        return {'winner': winner['name'],
+                'hand': winner_hand,
+                'hand_power': winner_hand_power}
+
     def showdown(self, game_state):
+        winner_stats = self.get_winner_stats(game_state)
         print("#######################################")
         print("#######################################")
         print("                 PLAYERS ON SHOWDOWN            ")
@@ -66,4 +78,9 @@ class Player:
         print(self.get_community_card(game_state))
         print("#######################################")
         print("#######################################")
+        print("                WINNER STATS                          ")
+        pprint.pprint(winner_stats, width=1)
+        print("#######################################")
+        print("#######################################")
+
 
