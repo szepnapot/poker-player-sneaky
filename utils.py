@@ -58,8 +58,11 @@ def getHandPower(hand):
 
 def convert_hand_two_short_form(hand):
     handstring = ''
-    handstring += hand[0][0]
-    handstring += hand[1]
+    handstring += hand[0][0]['suit'][0]
+    handstring += hand[0][0]['rank']
+    handstring += ', '
+    handstring += hand[0][1]['suit'][0]
+    handstring += hand[0][1]['rank']
     return handstring
 
 def test_hand_power():
@@ -73,4 +76,4 @@ def test_hand_power():
     for hand in ranked_hands:
         print(hand)
 
-# test_hand_power()
+#test_hand_power()
