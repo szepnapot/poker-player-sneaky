@@ -23,6 +23,7 @@ class Player:
     def betRequest(self, game_state):
         hand = self.get_hand(game_state)
         community_cards = self.get_community_card(game_state)
+        bet = 9999
         print("#######################################")
         print("                 OUR HAND                       ")
         print(hand)
@@ -32,7 +33,9 @@ class Player:
         print(community_cards)
         print("#######################################")
         print("#######################################")
-        return 9999
+        print("                 OUR BET               ")
+        print(bet)
+        return bet
 
     def showdown(self, game_state):
         pass
