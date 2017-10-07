@@ -30,7 +30,7 @@ class Player:
 
     def high_cards_only(self, game_state):
         hand = self.get_hand(game_state)
-        return RANKS.index(hand[0]) >  RANKS.index('10') and RANKS.index(hand[1]) >  RANKS.index('10')
+        return RANKS.index(hand[0]) > RANKS.index('10') and RANKS.index(hand[1]) > RANKS.index('10')
 
     def betRequest(self, game_state):
 
