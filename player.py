@@ -38,6 +38,12 @@ class Player:
 
     def showdown(self, game_state):
         print(game_state['players'])
+        print("#######################################")
+        print("#######################################")
+        print("                 COMMUNITY CARDS                ")
+        print(self.get_community_card(game_state))
+        print("#######################################")
+        print("#######################################")
         # players_with_cards = [(elem['hole_cards'], elem['name']) for elem in game_state['players']]
         # print(players_with_cards)
 
