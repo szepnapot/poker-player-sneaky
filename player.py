@@ -80,7 +80,7 @@ class Player:
                 bet = self.hold(game_state, ALL_IN, ownStack)
             elif hand_power >= 21:
                 if (self.only_high_cards(game_state)):
-                    bet = self.hold(game_state, int(ownStack/3), ownStack)
+                    bet = self.hold(game_state, 300, ownStack)
                 else:
                     bet = 300
             elif hand_power >= 19:
@@ -109,7 +109,7 @@ class Player:
             return bet
 
         except:
-            return 90000
+            return ALL_IN
 
     def get_winner_stats(self, game_state):
         winner = [{'winner': elem} for elem in game_state['players'] if elem['status'] == 'active']
