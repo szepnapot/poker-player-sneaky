@@ -29,7 +29,7 @@ class Player:
         elif hand_power >= 19:
             bet = 200
         elif hand_power > 10:
-            bet = 30
+            bet = 0
         else:
             bet = 0
         print("#######################################")
