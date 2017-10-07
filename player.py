@@ -36,7 +36,7 @@ class Player:
 
     def only_high_cards(self, game_state):
         try:
-            isOnlyHigh = False;
+            isOnlyHigh = False
             hand = self.get_hand(game_state)
             card_1 = hand[0][0]
             card_2 = hand[0][1]
@@ -59,8 +59,7 @@ class Player:
        elif self.only_high_cards(game_state):
            stack = self.get_stack(game_state)
            return int(stack*0.2)
-       else:
-            return 0
+       return 0
 
         # try:
         #     print("#######################################")
