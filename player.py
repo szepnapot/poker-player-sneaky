@@ -24,6 +24,11 @@ class Player:
 
         return maxbet
 
+    def get_active_players(self, game_state):
+        active_players = [1 for elem in game_state['players'] if elem['status'] == 'active']
+        return sum(active_players)
+
+
     def betRequest(self, game_state):
         print("#######################################")
         print("#######################################")
@@ -51,11 +56,6 @@ class Player:
         else:
             bet = 0
 
-        bet = 0
-        if hand_power >= 40:
-            bet = 9999
-
-
 
         print("#######################################")
         print("                 OUR HAND                       ")
@@ -75,16 +75,20 @@ class Player:
         return bet
 
     def get_winner_stats(self, game_state):
-        winner = [elem for elem in game_state['players'] if elem['status'] == 'active'][0]
+        winner = [{'winner': elem} for elem in game_state['players'] if elem['status'] == 'active']
         print(winner)
-        winner_hand = [winner.get('hole_cards', {})]
-        winner_hand_power = getHandPower(winner_hand)
-        return {'winner': winner['name'],
-                'hand': winner_hand,
-                'hand_power': winner_hand_power}
+        # try:
+        #     winner_hand = winner[0]['hole_cards']
+        #     winner_hand_power = getHandPower(winner_hand)
+        # except:
+        #     winner_hand = 'COULD NOT FOUND'
+        #     winner_hand_power = 'COULD NOT FOUND'
+        # return {'winner': winner[0]['name'],
+        #         'hand': winner_hand,
+        #         'hand_power': winner_hand_power}
 
     def showdown(self, game_state):
-        # winner_stats = self.get_winner_stats(game_state)
+        print(self.get_winner_stats(game_state))
         print("#######################################")
         print("#######################################")
         print("                 PLAYERS ON SHOWDOWN            ")
@@ -95,7 +99,7 @@ class Player:
         print(self.get_community_card(game_state))
         print("#######################################")
         print("#######################################")
-        # print("                WINNER STATS                          ")
+        print("                WINNER STATS                          ")
         # pprint.pprint(winner_stats, width=1)
         # print("#######################################")
         # print("#######################################")
