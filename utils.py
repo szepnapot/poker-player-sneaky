@@ -1,7 +1,7 @@
 def generate_test_data():
 
     ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-    colors = ['spades', 'diamonds', 'hearths', 'clubs']
+    colors = ['spades', 'diamonds']
 
     cards = []
 
@@ -14,8 +14,9 @@ def generate_test_data():
 
     hands = []
 
-    for card_1 in cards:
-        for card_2 in cards:
+    for i in range(len(cards)):
+        card_1 = cards[i]
+        for card_2 in cards[i:]:
             if(card_1 == card_2):
                 continue
             hand = [[]]
@@ -46,8 +47,8 @@ def getHandPower(hand):
         '10': 10,
         'J': 11,
         'Q': 12,
-        'K': 15,
-        'A': 20
+        'K': 13,
+        'A': 15
     }
 
     for card in hand[0]:
@@ -56,9 +57,9 @@ def getHandPower(hand):
 
 
     if(card_1['suit'] == card_2['suit']):
-        rank *= 1.2
+        rank *= 1.115
     if(card_1['rank'] == card_2['rank']):
-        rank += 15
+        rank += 10
     return rank
 
 def convert_hand_two_short_form(hand):
@@ -81,4 +82,4 @@ def test_hand_power():
     for hand in ranked_hands:
         print(hand)
 
-#test_hand_power()
+# test_hand_power()
