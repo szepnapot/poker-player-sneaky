@@ -56,13 +56,18 @@ def getHandPower(hand):
         rank *= 5
     return rank
 
+def convert_hand_two_short_form(hand):
+    handstring = ''
+    handstring += hand[0][0]
+    handstring += hand[1]
+    return handstring
 
 def test_hand_power():
     hands = generate_test_data()
     ranked_hands = []
     for hand in hands:
         power = getHandPower(hand)
-        ranked_hands.append([power, hand])
+        ranked_hands.append([power, convert_hand_two_short_form(hand)])
 
     ranked_hands.sort(key=lambda x: x[0])
     for hand in ranked_hands:
