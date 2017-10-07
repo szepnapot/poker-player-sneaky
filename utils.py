@@ -51,7 +51,7 @@ def getHandPower(hand):
     card_2 = hand[0][1]
 
     if(card_1['suit'] == card_2['suit']):
-        rank *= 1.5
+        rank *= 1.3
     if(card_1['rank'] == card_2['rank']):
         rank *= 5
     return rank
