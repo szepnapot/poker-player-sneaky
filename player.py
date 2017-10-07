@@ -1,6 +1,9 @@
 import pprint
 from utils import getHandPower
 
+import json
+import requests
+
 class Player:
     VERSION = "Default Python folding player"
 
@@ -108,5 +111,6 @@ class Player:
         print(self.get_winner_stats(game_state))
         print("#######################################")
         print("#######################################")
+        requests.post("https://lean-poker-db.herokuapp.com/add", json=self.get_winner_stats(game_state))
 
 
