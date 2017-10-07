@@ -37,6 +37,9 @@ class Player:
         return bet
 
     def showdown(self, game_state):
+        print("#######################################")
+        print("#######################################")
+        print("                 PLAYERS ON SHOWDOWN            ")
         print(game_state['players'])
         print("#######################################")
         print("#######################################")
