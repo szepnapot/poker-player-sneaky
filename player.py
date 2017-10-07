@@ -34,10 +34,10 @@ class Player:
 
     def betRequest(self, game_state):
 
-        if self.has_pairs_over('10'):
+        if self.has_pairs_over(game_state, '10'):
             return ALL_IN
 
-        if self.get_active_players() < 3 and self.has_pairs_over('2'):
+        if self.get_active_players(game_state) < 3 and self.has_pairs_over('2', '10'):
             return ALL_IN
 
         if self.high_cards_only(game_state):
