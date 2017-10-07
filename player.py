@@ -15,6 +15,13 @@ class Player:
     def get_community_card(self, game_state):
         return game_state["community_cards"]
 
+    def hold(self, game_state):
+        bets = self.bets_per_round(game_state)
+        maxbet = 0
+        for bet in bets:
+            if bet[1] > maxbet
+                maxbet = bet[1]
+
     def betRequest(self, game_state):
         print("#######################################")
         print("#######################################")
@@ -30,7 +37,6 @@ class Player:
         hand = self.get_hand(game_state)
         community_cards = self.get_community_card(game_state)
         hand_power = getHandPower(hand)
-
 
         if hand_power >= 35:
             bet = 9999
