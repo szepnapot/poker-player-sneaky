@@ -17,7 +17,7 @@ class Player:
         print("Community cards: {}".format(game_state["community_cards"]))
         print("###############################################")
         print("###############################################")
-        return 99999
+        return 0
 
     def showdown(self, game_state):
         pass
