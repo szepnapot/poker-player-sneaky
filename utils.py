@@ -49,6 +49,7 @@ def getHandPower(hand):
 
     card_1 = hand[0][0]
     card_2 = hand[0][1]
+
     if(card_1['suit'] == card_2['suit']):
         rank *= 1.5
     if(card_1['rank'] == card_2['rank']):
@@ -58,8 +59,13 @@ def getHandPower(hand):
 
 def test_hand_power():
     hands = generate_test_data()
+    ranked_hands = []
     for hand in hands:
-        print(hand)
-        print(getHandPower(hand))
+        power = getHandPower(hand)
+        ranked_hands.append([power, hand])
 
-test_hand_power()
+    ranked_hands.sort(key=lambda x: x[0])
+    for hand in ranked_hands:
+        print(hand)
+
+# test_hand_power()
