@@ -67,7 +67,7 @@ class Player:
                 'hand_power': winner_hand_power}
 
     def showdown(self, game_state):
-        winner_stats = self.get_winner_stats(game_state)
+        # winner_stats = self.get_winner_stats(game_state)
         print("#######################################")
         print("#######################################")
         print("                 PLAYERS ON SHOWDOWN            ")
@@ -78,9 +78,9 @@ class Player:
         print(self.get_community_card(game_state))
         print("#######################################")
         print("#######################################")
-        print("                WINNER STATS                          ")
-        pprint.pprint(winner_stats, width=1)
-        print("#######################################")
-        print("#######################################")
+        # print("                WINNER STATS                          ")
+        # pprint.pprint(winner_stats, width=1)
+        # print("#######################################")
+        # print("#######################################")
 
 
