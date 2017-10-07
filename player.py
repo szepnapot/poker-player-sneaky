@@ -31,51 +31,70 @@ class Player:
         active_players = [1 for elem in game_state['players'] if elem['status'] == 'active']
         return sum(active_players)
 
+    def only_high_cards(self, game_state):
+        try:
+            isOnlyHigh = False;
+            hand = self.get_hand(game_state)
+            card_1 = hand[0][0]
+            card_2 = hand[0][1]
+            if (card_1['rank'] in 'JQKA' and card_2['rank'] in 'JQKA'):
+                isOnlyHigh = True
+            return isOnlyHigh
+        except:
+            return False
+
 
     def betRequest(self, game_state):
-        print("#######################################")
-        print("#######################################")
-        print("                 GAME STATE                       ")
-        pprint.pprint(game_state, width=1)
-        print("#######################################")
-        print("#######################################")
-        print("                 PLAYER BETS                       ")
-        bets = self.bets_per_round(game_state)
-        pprint.pprint(bets, width=1)
-        print("#######################################")
-        print("#######################################")
-        hand = self.get_hand(game_state)
-        community_cards = self.get_community_card(game_state)
-        hand_power = getHandPower(hand)
+        try:
+            print("#######################################")
+            print("#######################################")
+            print("                 GAME STATE                       ")
+            pprint.pprint(game_state, width=1)
+            print("#######################################")
+            print("#######################################")
+            print("                 PLAYER BETS                       ")
+            bets = self.bets_per_round(game_state)
+            pprint.pprint(bets, width=1)
+            print("#######################################")
+            print("#######################################")
+            hand = self.get_hand(game_state)
+            community_cards = self.get_community_card(game_state)
+            hand_power = getHandPower(hand)
 
-        if hand_power >= 35:
-            bet = self.hold(game_state, 99999)
-        elif hand_power >= 21:
-            bet = self.hold(game_state, 300)
-        elif hand_power >= 19:
-            bet = 200
-        elif hand_power > 10:
-            bet = 0
-        else:
-            bet = 0
+            if hand_power >= 35:
+                bet = self.hold(game_state, 99999)
+            elif hand_power >= 21:
+                if (self.only_high_cards(game_state)):
+                    bet = self.hold(game_state, 300)
+                else:
+                    bet = 300
+            elif hand_power >= 19:
+                bet = 200
+            elif hand_power > 10:
+                bet = 0
+            else:
+                bet = 0
 
 
-        print("#######################################")
-        print("                 OUR HAND                       ")
-        print(hand)
-        print("#######################################")
-        print("#######################################")
-        print("                 COMMUNITY CARDS                ")
-        print(community_cards)
-        print("#######################################")
-        print("#######################################")
-        print("                 HAND POWER                      ")
-        print(hand_power)
-        print("#######################################")
-        print("#######################################")
-        print("                 OUR BET               ")
-        print(bet)
-        return bet
+            print("#######################################")
+            print("                 OUR HAND                       ")
+            print(hand)
+            print("#######################################")
+            print("#######################################")
+            print("                 COMMUNITY CARDS                ")
+            print(community_cards)
+            print("#######################################")
+            print("#######################################")
+            print("                 HAND POWER                      ")
+            print(hand_power)
+            print("#######################################")
+            print("#######################################")
+            print("                 OUR BET               ")
+            print(bet)
+            return bet
+
+        except:
+            return 90000
 
     def get_winner_stats(self, game_state):
         winner = [{'winner': elem} for elem in game_state['players'] if elem['status'] == 'active']

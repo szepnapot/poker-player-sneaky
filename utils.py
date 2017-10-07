@@ -24,7 +24,6 @@ def generate_test_data():
 
     return hands
 
-
 def getHandPower(hand):
     # [[{u'suit': u'spades', u'rank': u'8'}, {u'suit': u'diamonds', u'rank': u'Q'}]]
 
@@ -57,9 +56,9 @@ def getHandPower(hand):
 
 
     if(card_1['suit'] == card_2['suit']):
-        rank *= 1.3
+        rank *= 1.2
     if(card_1['rank'] == card_2['rank']):
-        rank *= 3
+        rank += 15
     return rank
 
 def convert_hand_two_short_form(hand):
