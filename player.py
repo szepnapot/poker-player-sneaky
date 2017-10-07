@@ -60,6 +60,7 @@ class Player:
 
     def get_winner_stats(self, game_state):
         winner = [elem for elem in game_state['players'] if elem['status'] == 'active'][0]
+        print(winner)
         winner_hand = [winner.get('hole_cards', {})]
         winner_hand_power = getHandPower(winner_hand)
         return {'winner': winner['name'],
