@@ -12,7 +12,7 @@ class Player:
     def betRequest(self, game_state):
         hand = self.get_hand(game_state)
         community_cards = self.get_community_card(game_state)
-        bet = 105
+        bet = 9999
         print("#######################################")
         print("                 OUR HAND                       ")
         print(hand)
@@ -27,9 +27,6 @@ class Player:
         return bet
 
     def showdown(self, game_state):
-        cards = [elem['hole_cards'] for elem in game_state['players']]
-        player = [elem['name'] for elem in game_state['players']]
-
-        print(cards)
-        print(player)
+        players_with_cards = [(elem['hole_cards'], elem['name']) for elem in game_state['players']]
+        print(players_with_cards)
 
