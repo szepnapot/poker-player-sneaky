@@ -48,7 +48,7 @@ class Player:
         print("#######################################")
         print("#######################################")
         print("                 PLAYERS ON SHOWDOWN            ")
-        print(game_state['players'])
+        pprint.pprint(game_state['players'])
         print("#######################################")
         print("#######################################")
         print("            COMMUNITY CARDS IN SHOWDOWN         ")
