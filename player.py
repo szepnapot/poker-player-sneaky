@@ -1,6 +1,6 @@
 
 class Player:
-    VERSION = "Default Python folding player"
+    VERSION = "CsillámPóniEvőKígyóBűvölőMedveEmberek"
 
     def get_hand(self, game_state):
         player = [elem['hole_cards'] for elem in game_state['players'] if elem['version'] == self.VERSION]
@@ -27,5 +27,6 @@ class Player:
         return bet
 
     def showdown(self, game_state):
+
         pass
 
