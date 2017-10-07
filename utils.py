@@ -27,6 +27,13 @@ def generate_test_data():
 
 def getHandPower(hand):
     # [[{u'suit': u'spades', u'rank': u'8'}, {u'suit': u'diamonds', u'rank': u'Q'}]]
+
+    try:
+        card_1 = hand[0][0]
+        card_2 = hand[0][1]
+    except:
+        return 0
+
     rank = 0
     card_number = {
         '2': 2,
@@ -47,8 +54,7 @@ def getHandPower(hand):
     for card in hand[0]:
         rank += card_number[card['rank']]
 
-    card_1 = hand[0][0]
-    card_2 = hand[0][1]
+
 
     if(card_1['suit'] == card_2['suit']):
         rank *= 1.3
