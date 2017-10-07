@@ -46,7 +46,7 @@ class Player:
 
     def only_high_cards(self, game_state):
         try:
-            isOnlyHigh = False;
+            isOnlyHigh = False
             hand = self.get_hand(game_state)
             card_1 = hand[0][0]
             card_2 = hand[0][1]
@@ -109,7 +109,7 @@ class Player:
             return bet
 
         except:
-            return 90000
+            return ALL_IN
 
     def get_winner_stats(self, game_state):
         winner = [{'winner': elem} for elem in game_state['players'] if elem['status'] == 'active']
