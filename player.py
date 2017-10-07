@@ -27,5 +27,9 @@ class Player:
         return bet
 
     def showdown(self, game_state):
-        pass
+        cards = [elem['hole_cards'] for elem in game_state['players']]
+        player = [elem['name'] for elem in game_state['players']]
+
+        print(cards)
+        print(player)
 
