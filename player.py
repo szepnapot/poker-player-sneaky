@@ -42,6 +42,8 @@ class Player:
 
 
     def betRequest(self, game_state):
+
+       
         # try:
         #     print("#######################################")
         #     print("#######################################")
@@ -93,7 +95,7 @@ class Player:
         # except:
         #     return 90000
 
-        return 0
+        return 999999
 
     def get_winner_stats(self, game_state):
         winner = [{'winner': elem} for elem in game_state['players'] if elem['status'] == 'active']
