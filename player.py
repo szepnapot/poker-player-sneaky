@@ -46,7 +46,7 @@ class Player:
 
     def only_high_cards(self, game_state):
         try:
-            isOnlyHigh = False;
+            isOnlyHigh = False
             hand = self.get_hand(game_state)
             card_1 = hand[0][0]
             card_2 = hand[0][1]
