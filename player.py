@@ -27,14 +27,10 @@ class Player:
         bets = self.bets_per_round(game_state)
         maxbet = intended_bet
 
-        if (intended_bet == ALL_IN):
-            for bet in bets:
-                if bet[1] > maxbet:
-                    maxbet = bet[1]
-        else:
-            for bet in bets:
-                if bet[1] > maxbet and bet[1] < int(ownStack * MAX_SACRIFICE_RATE):
-                    maxbet = bet[1]
+        for bet in bets:
+            if bet[1] > maxbet:
+                maxbet = bet[1]
+
 
         return maxbet
 
