@@ -44,6 +44,9 @@ class Player:
             bet = 0
 
         bet = 0
+        if hand_power >= 40:
+            bet = 9999
+
 
 
         print("#######################################")
