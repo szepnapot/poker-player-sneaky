@@ -10,6 +10,7 @@ class Player:
         return game_state["community_cards"]
 
     def betRequest(self, game_state):
+        print(game_state)
         hand = self.get_hand(game_state)
         community_cards = self.get_community_card(game_state)
         bet = 9999
