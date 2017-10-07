@@ -45,8 +45,8 @@ class Player:
         if self.get_active_players(game_state) < 3 and self.has_pairs_over(game_state, '10'):
             return ALL_IN
 
-        if self.high_cards_only(game_state):
-            return ALL_IN
+        # if self.high_cards_only(game_state):
+        #     return ALL_IN
 
         if self.hand_has_card(game_state, 'A'):
             return ALL_IN
