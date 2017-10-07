@@ -44,56 +44,57 @@ class Player:
     def betRequest(self, game_state):
 
        
-        # try:
-        #     print("#######################################")
-        #     print("#######################################")
-        #     print("                 GAME STATE                       ")
-        #     pprint.pprint(game_state, width=1)
-        #     print("#######################################")
-        #     print("#######################################")
-        #     print("                 PLAYER BETS                       ")
-        #     bets = self.bets_per_round(game_state)
-        #     pprint.pprint(bets, width=1)
-        #     print("#######################################")
-        #     print("#######################################")
-        #     hand = self.get_hand(game_state)
-        #     community_cards = self.get_community_card(game_state)
-        #     hand_power = getHandPower(hand)
-        #
-        #     if hand_power >= 35:
-        #         bet = self.hold(game_state, 99999)
-        #     elif hand_power >= 21:
-        #         if (self.only_high_cards(game_state)):
-        #             bet = self.hold(game_state, 300)
-        #         else:
-        #             bet = 300
-        #     elif hand_power >= 19:
-        #         bet = 200
-        #     elif hand_power > 10:
-        #         bet = 0
-        #     else:
-        #         bet = 0
-        #
-        #
-        #     print("#######################################")
-        #     print("                 OUR HAND                       ")
-        #     print(hand)
-        #     print("#######################################")
-        #     print("#######################################")
-        #     print("                 COMMUNITY CARDS                ")
-        #     print(community_cards)
-        #     print("#######################################")
-        #     print("#######################################")
-        #     print("                 HAND POWER                      ")
-        #     print(hand_power)
-        #     print("#######################################")
-        #     print("#######################################")
-        #     print("                 OUR BET               ")
-        #     print(bet)
-        #     return bet
-        #
-        # except:
-        #     return 90000
+        try:
+            print("#######################################")
+            print("#######################################")
+            print("                 GAME STATE                       ")
+            pprint.pprint(game_state, width=1)
+            print("#######################################")
+            print("#######################################")
+            print("                 PLAYER BETS                       ")
+            bets = self.bets_per_round(game_state)
+            pprint.pprint(bets, width=1)
+            print("#######################################")
+            print("#######################################")
+            hand = self.get_hand(game_state)
+            community_cards = self.get_community_card(game_state)
+            hand_power = getHandPower(hand)
+
+            if hand_power >= 35:
+                bet = 9999
+                #bet = self.hold(game_state, 99999)
+            elif hand_power >= 21:
+                #if (self.only_high_cards(game_state)):
+                #    bet = self.hold(game_state, 300)
+                #else:
+                    bet = 600
+            elif hand_power >= 19:
+                bet = 150
+            elif hand_power > 10:
+                bet = self.hold(game_state, 150)
+            else:
+                bet = 0
+
+
+            print("#######################################")
+            print("                 OUR HAND                       ")
+            print(hand)
+            print("#######################################")
+            print("#######################################")
+            print("                 COMMUNITY CARDS                ")
+            print(community_cards)
+            print("#######################################")
+            print("#######################################")
+            print("                 HAND POWER                      ")
+            print(hand_power)
+            print("#######################################")
+            print("#######################################")
+            print("                 OUR BET               ")
+            print(bet)
+            return bet
+
+        except:
+            return 90000
 
         return 999999
 
