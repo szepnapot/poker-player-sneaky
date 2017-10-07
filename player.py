@@ -1,6 +1,5 @@
 import pprint
 from utils import getHandPower
-import requests
 
 ALL_IN = 99999
 MAX_SACRIFICE_RATE = 0.7
@@ -37,12 +36,6 @@ class Player:
     def get_active_players(self, game_state):
         active_players = [1 for elem in game_state['players'] if elem['status'] == 'active']
         return sum(active_players)
-
-    def get_past_winners(self):
-        # MAY TAKE A LOT OF TIME !!
-        # EXTERNAL SERVICE
-        r = requests.get('https://lean-poker-db.herokuapp.com/get_winners')
-        return r.json()
 
     def only_high_cards(self, game_state):
         try:
