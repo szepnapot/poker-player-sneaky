@@ -1,3 +1,4 @@
+import pprint
 from utils import getHandPower
 
 class Player:
@@ -11,12 +12,19 @@ class Player:
         return game_state["community_cards"]
 
     def betRequest(self, game_state):
-        print(game_state)
+        print("#######################################")
+        print("#######################################")
+        print("                 GAME STATE                       ")
+        pprint.pprint(game_state, width=1)
+        print("#######################################")
+        print("#######################################")
         hand = self.get_hand(game_state)
         community_cards = self.get_community_card(game_state)
         hand_power = getHandPower(hand)
-        if hand_power >= 20:
+        if hand_power >= 25:
             bet = 9999
+        elif hand_power>= 20:
+            bet = 105
         elif hand_power > 10:
             bet = 30
         else:
@@ -42,7 +50,7 @@ class Player:
         print("#######################################")
         print("#######################################")
         print("                 PLAYERS ON SHOWDOWN            ")
-        print(game_state['players'])
+        pprint.pprint(game_state['players'])
         print("#######################################")
         print("#######################################")
         print("            COMMUNITY CARDS IN SHOWDOWN         ")
