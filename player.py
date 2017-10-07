@@ -1,12 +1,18 @@
 import pprint
 from utils import getHandPower
 
+ALL_IN = 9999999
+
 class Player:
     VERSION = "Default Python folding player"
 
     def get_hand(self, game_state):
         player = [elem['hole_cards'] for elem in game_state['players'] if elem['version'] == self.VERSION]
         return player
+
+    def get_stack(self, game_state):
+        stack = [elem['stack'] for elem in game_state['players'] if elem['version'] == self.VERSION]
+        return stack[0]
 
     def bets_per_round(self, game_state):
         bets = [(elem['name'], elem['bet']) for elem in game_state['players']]
@@ -40,10 +46,22 @@ class Player:
         except:
             return False
 
+    def hasHighPair(self, game_state):
+        hand = self.get_hand(game_state)
+        if (self.only_high_cards(game_state)):
+            if (hand[0]['rank'] == hand[1]['rank']):
+                return True
 
     def betRequest(self, game_state):
 
-       
+       if self.hasHighPair(game_state):
+           return ALL_IN
+       elif self.only_high_cards(game_state):
+           stack = self.get_stack(game_state)
+           return int(stack*0.2)
+       else:
+            return 0
+
         # try:
         #     print("#######################################")
         #     print("#######################################")
@@ -95,7 +113,7 @@ class Player:
         # except:
         #     return 90000
 
-        return 999999
+
 
     def get_winner_stats(self, game_state):
         winner = [{'winner': elem} for elem in game_state['players'] if elem['status'] == 'active']
