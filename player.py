@@ -28,6 +28,18 @@ class Player:
         active_players = [1 for elem in game_state['players'] if elem['status'] == 'active']
         return sum(active_players)
 
+    def only_high_cards(self, game_state):
+        try:
+            isOnlyHigh = False;
+            hand = self.get_hand(game_state)
+            card_1 = hand[0][0]
+            card_2 = hand[0][1]
+            if (card_1['rank'] in 'JQKA' and card_2['rank'] in 'JQKA'):
+                isOnlyHigh = True
+            return isOnlyHigh
+        except:
+            return False
+
 
     def betRequest(self, game_state):
         print("#######################################")
@@ -48,7 +60,10 @@ class Player:
         if hand_power >= 35:
             bet = self.hold(game_state, 99999)
         elif hand_power >= 21:
-            bet = self.hold(game_state, 300)
+            if (self.only_high_cards(game_state)):
+                bet = self.hold(game_state, 300)
+            else:
+                bet = 300
         elif hand_power >= 19:
             bet = 200
         elif hand_power > 10:

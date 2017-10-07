@@ -24,7 +24,6 @@ def generate_test_data():
 
     return hands
 
-
 def getHandPower(hand):
     # [[{u'suit': u'spades', u'rank': u'8'}, {u'suit': u'diamonds', u'rank': u'Q'}]]
 
