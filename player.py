@@ -2,12 +2,19 @@ import pprint
 from utils import getHandPower
 import requests
 
+ALL_IN = 99999
+MAX_SACRIFICE_RATE = 0.7
+
 class Player:
     VERSION = "Default Python folding player"
 
     def get_hand(self, game_state):
         player = [elem['hole_cards'] for elem in game_state['players'] if elem['version'] == self.VERSION]
         return player
+
+    def get_own_stack(self, game_state):
+        stack = [elem['stack'] for elem in game_state['players'] if elem['version'] == self.VERSION]
+        return stack
 
     def bets_per_round(self, game_state):
         bets = [(elem['name'], elem['bet']) for elem in game_state['players']]
@@ -16,12 +23,18 @@ class Player:
     def get_community_card(self, game_state):
         return game_state["community_cards"]
 
-    def hold(self, game_state, intended_bet):
+    def hold(self, game_state, intended_bet, ownStack):
         bets = self.bets_per_round(game_state)
         maxbet = intended_bet
-        for bet in bets:
-            if bet[1] > maxbet:
-                maxbet = bet[1]
+
+        if (intended_bet == ALL_IN):
+            for bet in bets:
+                if bet[1] > maxbet:
+                    maxbet = bet[1]
+        else:
+            for bet in bets:
+                if bet[1] > maxbet and bet[1] < int(ownStack * MAX_SACRIFICE_RATE):
+                    maxbet = bet[1]
 
         return maxbet
 
@@ -65,11 +78,13 @@ class Player:
             community_cards = self.get_community_card(game_state)
             hand_power = getHandPower(hand)
 
+            ownStack = self.get_own_stack(game_state)
+
             if hand_power >= 35:
-                bet = self.hold(game_state, 99999)
+                bet = self.hold(game_state, ALL_IN, ownStack)
             elif hand_power >= 21:
                 if (self.only_high_cards(game_state)):
-                    bet = self.hold(game_state, 300)
+                    bet = self.hold(game_state, int(ownStack/3), ownStack)
                 else:
                     bet = 300
             elif hand_power >= 19:
