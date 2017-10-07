@@ -50,7 +50,7 @@ class Player:
         elif hand_power >= 21:
             bet = self.hold(game_state, 300)
         elif hand_power >= 19:
-            bet = self.hold(game_state, 200)
+            bet = 200
         elif hand_power > 10:
             bet = 0
         else:
