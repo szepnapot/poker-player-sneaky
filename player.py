@@ -76,14 +76,14 @@ class Player:
 
             if hand_power >= 35:
                 bet = self.hold(game_state, ALL_IN, ownStack)
-            elif hand_power >= 21:
+            elif hand_power >= 25:
                 if (self.only_high_cards(game_state)):
                     bet = self.hold(game_state, int(ownStack/3), ownStack)
                 else:
                     bet = 300
             elif hand_power >= 19:
                 bet = 200
-            elif hand_power > 10:
+            elif hand_power > 15:
                 bet = 0
             else:
                 bet = 0
