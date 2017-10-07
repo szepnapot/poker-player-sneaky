@@ -1,19 +1,12 @@
 import pprint
 from utils import getHandPower
 
-ALL_IN = 99999
-MAX_SACRIFICE_RATE = 0.7
-
 class Player:
     VERSION = "Default Python folding player"
 
     def get_hand(self, game_state):
         player = [elem['hole_cards'] for elem in game_state['players'] if elem['version'] == self.VERSION]
         return player
-
-    def get_own_stack(self, game_state):
-        stack = [elem['stack'] for elem in game_state['players'] if elem['version'] == self.VERSION]
-        return stack[0]
 
     def bets_per_round(self, game_state):
         bets = [(elem['name'], elem['bet']) for elem in game_state['players']]
@@ -22,18 +15,12 @@ class Player:
     def get_community_card(self, game_state):
         return game_state["community_cards"]
 
-    def hold(self, game_state, intended_bet, ownStack):
+    def hold(self, game_state, intended_bet):
         bets = self.bets_per_round(game_state)
         maxbet = intended_bet
-
-        if (intended_bet == ALL_IN):
-            for bet in bets:
-                if bet[1] > maxbet:
-                    maxbet = bet[1]
-        else:
-            for bet in bets:
-                if bet[1] > maxbet and bet[1] < int(ownStack * MAX_SACRIFICE_RATE):
-                    maxbet = bet[1]
+        for bet in bets:
+            if bet[1] > maxbet:
+                maxbet = bet[1]
 
         return maxbet
 
@@ -43,7 +30,7 @@ class Player:
 
     def only_high_cards(self, game_state):
         try:
-            isOnlyHigh = False
+            isOnlyHigh = False;
             hand = self.get_hand(game_state)
             card_1 = hand[0][0]
             card_2 = hand[0][1]
@@ -71,18 +58,16 @@ class Player:
             community_cards = self.get_community_card(game_state)
             hand_power = getHandPower(hand)
 
-            ownStack = self.get_own_stack(game_state)
-
             if hand_power >= 35:
-                bet = self.hold(game_state, ALL_IN, ownStack)
-            elif hand_power >= 25:
+                bet = self.hold(game_state, 99999)
+            elif hand_power >= 21:
                 if (self.only_high_cards(game_state)):
-                    bet = self.hold(game_state, int(ownStack/3), ownStack)
+                    bet = self.hold(game_state, 300)
                 else:
                     bet = 300
             elif hand_power >= 19:
                 bet = 200
-            elif hand_power > 15:
+            elif hand_power > 10:
                 bet = 0
             else:
                 bet = 0
@@ -127,17 +112,20 @@ class Player:
         pprint.pprint(game_state, width=1)
         print("#######################################")
         print("#######################################")
+        print(self.get_winner_stats(game_state))
+        print("#######################################")
+        print("#######################################")
         print("                 PLAYERS ON SHOWDOWN            ")
         pprint.pprint(game_state['players'])
         print("#######################################")
         print("#######################################")
-        print("COMMUNITY CARDS IN SHOWDOWN: {}".format(self.get_community_card(game_state)))
+        print("            COMMUNITY CARDS IN SHOWDOWN         ")
+        print(self.get_community_card(game_state))
         print("#######################################")
         print("#######################################")
         print("                WINNER STATS                          ")
-        print("WINNER STATS: {}".format(self.get_winner_stats(game_state)))
+        print(self.get_winner_stats(game_state))
         print("#######################################")
         print("#######################################")
-
 
 
