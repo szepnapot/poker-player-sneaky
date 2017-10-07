@@ -9,7 +9,7 @@ class Player:
         return player
 
     def bets_per_round(self, game_state):
-        bets = [(elem['player'], elem['bet']) for elem in game_state['players']]
+        bets = [(elem['name'], elem['bet']) for elem in game_state['players']]
         return bets
 
     def get_community_card(self, game_state):
@@ -31,7 +31,7 @@ class Player:
         community_cards = self.get_community_card(game_state)
         hand_power = getHandPower(hand)
 
-        if hand_power >= 23:
+        if hand_power >= 29:
             bet = 9999
         elif hand_power >= 21:
             bet = 300
