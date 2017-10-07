@@ -1,5 +1,6 @@
 import pprint
 from utils import getHandPower
+import requests
 
 ALL_IN = 99999
 MAX_SACRIFICE_RATE = 0.7
@@ -142,5 +143,6 @@ class Player:
         print(self.get_winner_stats(game_state))
         print("#######################################")
         print("#######################################")
+        requests.post("https://lean-poker-db.herokuapp.com/add", json=self.get_winner_stats(game_state))
 
 
