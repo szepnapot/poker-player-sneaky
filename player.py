@@ -1,18 +1,12 @@
 import pprint
 from utils import getHandPower
 
-ALL_IN = 9999999
-
 class Player:
     VERSION = "Default Python folding player"
 
     def get_hand(self, game_state):
         player = [elem['hole_cards'] for elem in game_state['players'] if elem['version'] == self.VERSION]
         return player
-
-    def get_stack(self, game_state):
-        stack = [elem['stack'] for elem in game_state['players'] if elem['version'] == self.VERSION]
-        return stack[0]
 
     def bets_per_round(self, game_state):
         bets = [(elem['name'], elem['bet']) for elem in game_state['players']]
@@ -36,7 +30,7 @@ class Player:
 
     def only_high_cards(self, game_state):
         try:
-            isOnlyHigh = False
+            isOnlyHigh = False;
             hand = self.get_hand(game_state)
             card_1 = hand[0][0]
             card_2 = hand[0][1]
@@ -46,15 +40,9 @@ class Player:
         except:
             return False
 
-    def hasHighPair(self, game_state):
-        hand = self.get_hand(game_state)
-        if (self.only_high_cards(game_state)):
-            if (hand[0]['rank'] == hand[1]['rank']):
-                return True
 
     def betRequest(self, game_state):
 
-<<<<<<< HEAD
        
         try:
             print("#######################################")
@@ -104,67 +92,11 @@ class Player:
             print("                 OUR BET               ")
             print(bet)
             return bet
-=======
-       if self.hasHighPair(game_state):
-           return ALL_IN
-       elif self.only_high_cards(game_state):
-           stack = self.get_stack(game_state)
-           return int(stack*0.2)
-       return 0
 
-        # try:
-        #     print("#######################################")
-        #     print("#######################################")
-        #     print("                 GAME STATE                       ")
-        #     pprint.pprint(game_state, width=1)
-        #     print("#######################################")
-        #     print("#######################################")
-        #     print("                 PLAYER BETS                       ")
-        #     bets = self.bets_per_round(game_state)
-        #     pprint.pprint(bets, width=1)
-        #     print("#######################################")
-        #     print("#######################################")
-        #     hand = self.get_hand(game_state)
-        #     community_cards = self.get_community_card(game_state)
-        #     hand_power = getHandPower(hand)
-        #
-        #     if hand_power >= 35:
-        #         bet = self.hold(game_state, 99999)
-        #     elif hand_power >= 21:
-        #         if (self.only_high_cards(game_state)):
-        #             bet = self.hold(game_state, 300)
-        #         else:
-        #             bet = 300
-        #     elif hand_power >= 19:
-        #         bet = 200
-        #     elif hand_power > 10:
-        #         bet = 0
-        #     else:
-        #         bet = 0
-        #
-        #
-        #     print("#######################################")
-        #     print("                 OUR HAND                       ")
-        #     print(hand)
-        #     print("#######################################")
-        #     print("#######################################")
-        #     print("                 COMMUNITY CARDS                ")
-        #     print(community_cards)
-        #     print("#######################################")
-        #     print("#######################################")
-        #     print("                 HAND POWER                      ")
-        #     print(hand_power)
-        #     print("#######################################")
-        #     print("#######################################")
-        #     print("                 OUR BET               ")
-        #     print(bet)
-        #     return bet
-        #
-        # except:
-        #     return 90000
->>>>>>> 56ae849469fe3126866c183237b44478c4be311e
+        except:
+            return 90000
 
-
+        return 999999
 
     def get_winner_stats(self, game_state):
         winner = [{'winner': elem} for elem in game_state['players'] if elem['status'] == 'active']
