@@ -26,11 +26,11 @@ class Player:
 
     def has_pairs_over(self, game_state, over_card):
         hand = self.get_hand(game_state)
-        return hand[0] == hand[1] and RANKS.index(hand[0]) > RANKS.index(over_card)
+        return hand[0][0]['rank'] == hand[0][1]['rank'] and RANKS.index(hand[0]) > RANKS.index(over_card)
 
     def high_cards_only(self, game_state):
         hand = self.get_hand(game_state)
-        return RANKS.index(hand[0]) > RANKS.index('10') and RANKS.index(hand[1]) > RANKS.index('10')
+        return RANKS.index(hand[0][0]) > RANKS.index('10') and RANKS.index(hand[0][1]) > RANKS.index('10')
 
     def hand_has_card(self, game_state, card):
         hand = self.get_hand(game_state)
