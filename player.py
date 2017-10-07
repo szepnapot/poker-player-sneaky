@@ -27,22 +27,20 @@ class Player:
         bets = self.bets_per_round(game_state)
         maxbet = intended_bet
 
-        for bet in bets:
-            if bet[1] > maxbet:
-                maxbet = bet[1]
-
+        if (intended_bet == ALL_IN):
+            for bet in bets:
+                if bet[1] > maxbet:
+                    maxbet = bet[1]
+        else:
+            for bet in bets:
+                if bet[1] > maxbet and bet[1] < int(ownStack * MAX_SACRIFICE_RATE):
+                    maxbet = bet[1]
 
         return maxbet
 
     def get_active_players(self, game_state):
         active_players = [1 for elem in game_state['players'] if elem['status'] == 'active']
         return sum(active_players)
-
-    def get_past_winners(self):
-        # MAY TAKE A LOT OF TIME !!
-        # EXTERNAL SERVICE
-        r = requests.get('https://lean-poker-db.herokuapp.com/get_winners')
-        return r.json()
 
     def only_high_cards(self, game_state):
         try:
@@ -80,7 +78,7 @@ class Player:
                 bet = self.hold(game_state, ALL_IN, ownStack)
             elif hand_power >= 21:
                 if (self.only_high_cards(game_state)):
-                    bet = self.hold(game_state, 300, ownStack)
+                    bet = self.hold(game_state, int(ownStack/3), ownStack)
                 else:
                     bet = 300
             elif hand_power >= 19:
@@ -109,7 +107,7 @@ class Player:
             return bet
 
         except:
-            return ALL_IN
+            return 90000
 
     def get_winner_stats(self, game_state):
         winner = [{'winner': elem} for elem in game_state['players'] if elem['status'] == 'active']
@@ -145,9 +143,6 @@ class Player:
         print(self.get_winner_stats(game_state))
         print("#######################################")
         print("#######################################")
-        try:
-            requests.post("https://lean-poker-db.herokuapp.com/add", json=self.get_winner_stats(game_state), timeout=0.001)
-        except:
-            pass
+        requests.post("https://lean-poker-db.herokuapp.com/add", json=self.get_winner_stats(game_state))
 
 
