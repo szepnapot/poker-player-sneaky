@@ -9,7 +9,7 @@ class Player:
         return player
 
     def bets_per_round(self, game_state):
-        bets = [(elem['player'], elem['bet']) for elem in game_state['players']]
+        bets = [(elem['name'], elem['bet']) for elem in game_state['players']]
         return bets
 
     def get_community_card(self, game_state):
