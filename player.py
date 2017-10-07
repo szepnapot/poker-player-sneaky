@@ -8,6 +8,10 @@ class Player:
         player = [elem['hole_cards'] for elem in game_state['players'] if elem['version'] == self.VERSION]
         return player
 
+    def bets_per_round(self, game_state):
+        bets = [(elem['player'], elem['bet']) for elem in game_state['players']]
+        return bets
+
     def get_community_card(self, game_state):
         return game_state["community_cards"]
 
@@ -18,15 +22,23 @@ class Player:
         pprint.pprint(game_state, width=1)
         print("#######################################")
         print("#######################################")
+        print("                 PLAYER BETS                       ")
+        bets = self.bets_per_round(game_state)
+        pprint.pprint(bets, width=1)
+        print("#######################################")
+        print("#######################################")
         hand = self.get_hand(game_state)
         community_cards = self.get_community_card(game_state)
         hand_power = getHandPower(hand)
-        if hand_power >= 25:
+
+        if hand_power >= 23:
             bet = 9999
-        elif hand_power>= 20:
-            bet = 105
+        elif hand_power >= 21:
+            bet = 300
+        elif hand_power >= 19:
+            bet = 200
         elif hand_power > 10:
-            bet = 30
+            bet = 0
         else:
             bet = 0
         print("#######################################")
