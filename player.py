@@ -59,16 +59,19 @@ class Player:
         return bet
 
     def get_winner_stats(self, game_state):
-        winner = [elem for elem in game_state['players'] if elem['status'] == 'active'][0]
-        print(winner)
-        winner_hand = [winner.get('hole_cards', {})]
-        winner_hand_power = getHandPower(winner_hand)
-        return {'winner': winner['name'],
+        winner = [{'winner': elem} for elem in game_state['players'] if elem['status'] == 'active']
+        try:
+            winner_hand = winner[0]['hole_cards']
+            winner_hand_power = getHandPower(winner_hand)
+        except:
+            winner_hand = 'COULD NOT FOUND'
+            winner_hand_power = 'COULD NOT FOUND'
+        return {'winner': winner[0]['name'],
                 'hand': winner_hand,
                 'hand_power': winner_hand_power}
 
     def showdown(self, game_state):
-        # winner_stats = self.get_winner_stats(game_state)
+        winner_stats = self.get_winner_stats(game_state)
         print("#######################################")
         print("#######################################")
         print("                 PLAYERS ON SHOWDOWN            ")
@@ -79,9 +82,9 @@ class Player:
         print(self.get_community_card(game_state))
         print("#######################################")
         print("#######################################")
-        # print("                WINNER STATS                          ")
-        # pprint.pprint(winner_stats, width=1)
-        # print("#######################################")
-        # print("#######################################")
+        print("                WINNER STATS                          ")
+        pprint.pprint(winner_stats, width=1)
+        print("#######################################")
+        print("#######################################")
 
 
