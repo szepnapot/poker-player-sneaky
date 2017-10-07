@@ -28,6 +28,7 @@ class Player:
         return bet
 
     def showdown(self, game_state):
-        players_with_cards = [(elem['hole_cards'], elem['name']) for elem in game_state['players']]
-        print(players_with_cards)
+        print(game_state['players'])
+        # players_with_cards = [(elem['hole_cards'], elem['name']) for elem in game_state['players']]
+        # print(players_with_cards)
 
