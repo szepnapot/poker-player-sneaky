@@ -145,9 +145,5 @@ class Player:
         print(self.get_winner_stats(game_state))
         print("#######################################")
         print("#######################################")
-        try:
-            requests.post("https://lean-poker-db.herokuapp.com/add", json=self.get_winner_stats(game_state), timeout=0.001)
-        except:
-            pass
 
 
