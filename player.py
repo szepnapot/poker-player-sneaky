@@ -13,7 +13,7 @@ class Player:
 
     def get_own_stack(self, game_state):
         stack = [elem['stack'] for elem in game_state['players'] if elem['version'] == self.VERSION]
-        return stack
+        return stack[0]
 
     def bets_per_round(self, game_state):
         bets = [(elem['name'], elem['bet']) for elem in game_state['players']]
