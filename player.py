@@ -32,6 +32,11 @@ class Player:
         hand = self.get_hand(game_state)
         return RANKS.index(hand[0]) > RANKS.index('10') and RANKS.index(hand[1]) > RANKS.index('10')
 
+    def hand_has_card(self, game_state, card):
+        hand = self.get_hand(game_state)
+        return card in hand
+
+
     def betRequest(self, game_state):
 
         if self.has_pairs_over(game_state, '10'):
@@ -42,6 +47,10 @@ class Player:
 
         if self.high_cards_only(game_state):
             return ALL_IN
+
+        if self.hand_has_card(game_state, 'A'):
+            return ALL_IN
+
 
         return 0
 
