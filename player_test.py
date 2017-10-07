@@ -7,3 +7,5 @@ assert pl.betRequest(test_game_state) == 99999
 
 
 print(pl.showdown(test_showdown))
+
+print(pl.get_past_winners())

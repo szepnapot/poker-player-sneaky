@@ -29,6 +29,12 @@ class Player:
         active_players = [1 for elem in game_state['players'] if elem['status'] == 'active']
         return sum(active_players)
 
+    def get_past_winners(self):
+        # MAY TAKE A LOT OF TIME !!
+        # EXTERNAL SERVICE
+        r = requests.get('https://lean-poker-db.herokuapp.com/get_winners')
+        return r.json()
+
     def only_high_cards(self, game_state):
         try:
             isOnlyHigh = False;
@@ -128,6 +134,9 @@ class Player:
         print(self.get_winner_stats(game_state))
         print("#######################################")
         print("#######################################")
-        requests.post("https://lean-poker-db.herokuapp.com/add", json=self.get_winner_stats(game_state))
+        try:
+            requests.post("https://lean-poker-db.herokuapp.com/add", json=self.get_winner_stats(game_state), timeout=0.001)
+        except:
+            pass
 
 
