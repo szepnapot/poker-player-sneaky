@@ -17,6 +17,8 @@ class Player:
         hand_power = getHandPower(hand)
         if hand_power >= 20:
             bet = 9999
+        elif hand_power > 10:
+            bet = 30
         else:
             bet = 0
         print("#######################################")
@@ -43,7 +45,7 @@ class Player:
         print(game_state['players'])
         print("#######################################")
         print("#######################################")
-        print("            COMMUNITY CARDS IN SHOWDOWN                ")
+        print("            COMMUNITY CARDS IN SHOWDOWN         ")
         print(self.get_community_card(game_state))
         print("#######################################")
         print("#######################################")
