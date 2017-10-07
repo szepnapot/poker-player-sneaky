@@ -9,17 +9,6 @@ class Player:
     def get_community_card(self, game_state):
         return game_state["community_cards"]
 
-    def printer(self, hand, community):
-        print("#######################################")
-        print("                 OUR HAND                       ")
-        print(hand)
-        print("#######################################")
-        print("#######################################")
-        print("                 COMMUNITY CARDS                ")
-        print(community)
-        print("#######################################")
-        print("#######################################")
-
     def betRequest(self, game_state):
         hand = self.get_hand(game_state)
         community_cards = self.get_community_card(game_state)
