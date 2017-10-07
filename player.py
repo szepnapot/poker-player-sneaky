@@ -10,17 +10,16 @@ class Player:
     def get_community_card(self, game_state):
         return game_state["community_cards"]
 
-    def printer(self, *args):
-        separator = lambda: print("#" * 50)
-        separator()
+    def printer(self, hand, community):
+        print("#######################################")
         print("                 OUR HAND                       ")
-        print(args[0])
-        separator()
-        separator()
+        print(hand)
+        print("#######################################")
+        print("#######################################")
         print("                 COMMUNITY CARDS                ")
-        print(args[1])
-        separator()
-        separator()
+        print(community)
+        print("#######################################")
+        print("#######################################")
 
     def betRequest(self, game_state):
         hand = self.get_hand(game_state)
