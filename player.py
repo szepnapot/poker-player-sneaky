@@ -78,7 +78,7 @@ class Player:
         winner = [{'winner': elem} for elem in game_state['players'] if elem['status'] == 'active']
         try:
             winner_hand = winner[0]['winner']['hole_cards']
-            winner_hand_power = getHandPower(winner_hand)
+            winner_hand_power = getHandPower([winner_hand])
         except:
             winner_hand = 'HAND NOT SHOWN'
             winner_hand_power = 'HAND NOT SHOWN'

@@ -126,6 +126,13 @@ u'orbits': 6,
                                u'name': u'GOgliG',
                                u'stack': 459,
                                u'status': u'active',
+u'hole_cards': [{u'rank': u'6',
+
+                               u'suit': u'clubs'},
+
+                              {u'rank': u'J',
+
+                               u'suit': u'spades'}],
                                u'time_used': 441163,
 
               u'version': u'High rollers lol'}],
