@@ -31,6 +31,7 @@ class Player:
         community_cards = self.get_community_card(game_state)
         hand_power = getHandPower(hand)
 
+
         if hand_power >= 35:
             bet = 9999
         elif hand_power >= 21:
@@ -41,6 +42,10 @@ class Player:
             bet = 0
         else:
             bet = 0
+
+        bet = 0
+
+
         print("#######################################")
         print("                 OUR HAND                       ")
         print(hand)
